@@ -80,7 +80,7 @@ class mark(models.Model):
     _description = 'notes'
 
     name = fields.Char(compute="_get_mark_name")
-    mark = fields.Integer()
+    mark = fields.Integer(default=lambda self: random.randint(0,10))
     student = fields.Many2one('proves.student')
     topic = fields.Many2one('proves.topic')
     
