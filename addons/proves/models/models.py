@@ -21,6 +21,7 @@ class student(models.Model):
     photo = fields.Image(max_width=200, max_height=200)
     classroom_id = fields.Many2one('proves.classroom', ondelete='set null')
     topics = fields.One2many('proves.mark','student')
+    num_topics = fields.Integer(compute = '_get_mediam_mark',string ="Topics Quantity")
     floor = fields.Integer(related='classroom_id.floor')
     median_mark = fields.Float(compute='_get_median_mark')
 
@@ -29,6 +30,7 @@ class student(models.Model):
         print(self)
         for student in self:
             student.median_mark = 0
+            student.qua_topics = len(student.topics)
             print(student.topics)
             if len(student.topics) > 0:
                 median = 0
