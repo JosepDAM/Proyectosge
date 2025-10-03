@@ -30,7 +30,7 @@ class student(models.Model):
         print(self)
         for student in self:
             student.median_mark = 0
-            student.qua_topics = len(student.topics)
+            student.num_topics = len(student.topics)
             print(student.topics)
             if len(student.topics) > 0:
                 median = 0
